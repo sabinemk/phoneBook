@@ -1,36 +1,31 @@
 package controllers;
 
-
 import appUsers.Contact;
 
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class MenuController {
+public class ImprovedMenuController {
 
-    public MenuController() {
-    }
+    private ImprovedMenuController improvedMenuController = new ImprovedMenuController();
+
     private ArrayList<Contact> contactList = new ArrayList<>();
-
-    private PhoneBookController phoneBookController = new PhoneBookController(new ArrayList<Contact>());
-
-
     public void start() {
         JOptionPane.showConfirmDialog(null, "Hi! Please, choose" +
                 "an action to perform");
-        
+
         this.displayMainMenu();
     }
-    
-    private void displayMainMenu(){
+
+    private void displayMainMenu() {
         String option = this.getUserInput("enter an activity number to execute\n" +
                 "1. Create a contact\n" +
                 "2. Remove a contact\n" +
-                "3. Find a contact\n"+
-                "4. Update an existing contact\n"+
-                "5. View all contacts\n"+
-                "6. Export contact list (csv)\n"+
-                "7. Import contact list (csv)\n"+
+                "3. Find a contact\n" +
+                "4. Update an existing contact\n" +
+                "5. View all contacts\n" +
+                "6. Export contact list (csv)\n" +
+                "7. Import contact list (csv)\n" +
                 "8. Close / Exit\n"
         );
 
@@ -39,16 +34,16 @@ public class MenuController {
                 this.handleContactCreation();
                 break;
             case "2":
-                this.handleRemoveContact(); //
+                //this.handleRemoveContact(); //
                 break;
             case "3":
                 //this.handleFindingContact();//partial match?
                 break;
             case "4":
-                //update an existing
+                // this.updateContact //failed
                 break;
             case "5":
-                this.viewMyContactList(); //not complete
+                //this.viewMyContactList(); //not complete
                 break;
             case "6":
                 //export contact
@@ -63,8 +58,8 @@ public class MenuController {
 
         }
         this.displayMainMenu();
-       
     }
+
 
     private void handleContactCreation(){
         String contactName = this.getUserInput("enter contact's name");
@@ -79,29 +74,12 @@ public class MenuController {
         Contact newContact = new Contact(contactName, contactPhoneNo, contactEmail);
         contactList.add(newContact);
 
-        JOptionPane.showMessageDialog(null,"New contact "+ contactName+" created!");
-
-    }
-
-    private void handleRemoveContact() {
-        String name = getUserInput("Enter the name of the contact you want to remove:");
-
+        System.out.println("New contact "+ contactName+" created!");
 
     }
 
 
-    private void handleFindingContact() {
-    }
 
-
-    private void viewMyContactList(){
-        try {
-            this.displayMessage(this.phoneBookController.viewContactList(contactList));
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
 
     private String getUserInput(String message) {
         return JOptionPane.showInputDialog(null, message);
@@ -110,8 +88,5 @@ public class MenuController {
     private void displayMessage(String message) {
         JOptionPane.showInputDialog(null, message);
     }
-
-
-
 
 }

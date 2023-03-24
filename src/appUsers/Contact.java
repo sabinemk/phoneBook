@@ -22,10 +22,6 @@ public class Contact {
         this.email = email;
     }
 
-    public Contact() {
-
-    }
-
     public String getName() {
         return name;
     }
@@ -56,6 +52,12 @@ public class Contact {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    @Override
+    public String toString() {
+        return "name " + name + ", phoneNo " + phoneNo +", email " + email;
     }
 }
 

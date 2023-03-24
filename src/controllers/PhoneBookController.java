@@ -18,6 +18,18 @@ public class PhoneBookController {
         this.contactList.add(contact);
     }
 
+    private void removeContact() {
+        String name = getUserInput("Enter the name of the contact to be removed:");
+
+        Contact contact = PhoneBookController.findContact(name);
+        if (contact == null) {
+            JOptionPane.showMessageDialog(null, "Contact not found.");
+            return;
+        }
+
+        PhoneBookController.removeContact(contact);
+        JOptionPane.showMessageDialog(null, "Contact removed successfully.");
+    }
 
     public String viewContactList(ArrayList<Contact> contactList){
 
@@ -29,16 +41,14 @@ public class PhoneBookController {
 
     }
 
-    public Contact removeContact(ArrayList<Contact> contacts,String nameToRemove){
-        String contactName = this.getUserInput("enter contact's name to remove it");
-
-        for(Contact contact : contacts){
-            if (contact.getName().equals(nameToRemove)){
-                return contact;
-            }
-        }
-        return null;
+    public void removeContact(Contact contact){
+        contactList.remove(contact);
     }
+
+
+
+
+
 
 
 
